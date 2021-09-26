@@ -1,8 +1,8 @@
 {
-  "name": "lavalampsvgblobs",
-  "version": "1.1.0",
-  "description": "a small libary to generate animated svg-blobs",
-  "main": "dist/index.js",
+  "name": "@lilalump/lavalampsvgblobs",
+  "version": "0.0.1",
+  "description": "a small library to generate random animated svg-blobs",
+  "main": "dist/blob.js",
   "author": "Jasper Bartscher",
   "license": "MIT",
   "type": "commonjs",
@@ -26,6 +26,7 @@
     "webpack-dev-server": "^4.3.0"
   },
   "scripts": {
+    "tsc": "tsc",
     "build": "webpack",
     "dev": "webpack serve"
   }
