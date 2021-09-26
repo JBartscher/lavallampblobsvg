@@ -1,6 +1,6 @@
-import {Array, Color, SVG} from "@svgdotjs/svg.js"
+import {Color} from "@svgdotjs/svg.js"
 
-interface Blob {
+export interface Blob {
     radius: number
     centerX: number
     centerY: number
@@ -22,7 +22,7 @@ type Coordinate = {
     y: number,
 }
 
-class CurvyBlob implements Blob {
+export class CurvyBlob implements Blob {
 
     centerX: number;
     centerY: number;
@@ -114,5 +114,3 @@ class CurvyBlob implements Blob {
         return num
     }
 }
-
-export {Blob, CurvyBlob}

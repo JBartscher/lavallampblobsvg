@@ -1,6 +1,4 @@
-import {CurvyBlob} from "./blob";
+import {CurvyBlob, Blob} from "./blob";
 
-namespace BlobLibary {
-    // @ts-ignore
-    export const CurvyBlob = CurvyBlob
-}
+module.exports = {CurvyBlob, Blob}
+export = {CurvyBlob, Blob}
