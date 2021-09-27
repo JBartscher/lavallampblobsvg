@@ -1,4 +1,5 @@
 import {Color} from "@svgdotjs/svg.js"
+import {createHash} from "crypto";
 
 export interface Blob {
     radius: number
@@ -12,9 +13,8 @@ export interface Blob {
     pathD: string;
 }
 
-interface BlobTransition {
-    firstBlob: Blob
-    secondBlob: Blob
+function createSha256CspHashFromPathD(pathD) {
+    return createHash('sha256').update(pathD).digest('base64');
 }
 
 type Coordinate = {
@@ -22,7 +22,7 @@ type Coordinate = {
     y: number,
 }
 
-export default class CurvyBlob implements Blob {
+export class CurvyBlob implements Blob {
 
     centerX: number;
     centerY: number;
@@ -34,10 +34,10 @@ export default class CurvyBlob implements Blob {
 
     private pathCoordinates: Coordinate[] = [];
     pathD: string;
+    private id: string;
 
     constructor() {
         this.pathD = "";
-
         this.angle = 0
         this.vertixCountFactor = 0.6;
         this.radius = 100;
@@ -47,6 +47,8 @@ export default class CurvyBlob implements Blob {
         this.color = Color.random("vibrant")
 
         this.generateCurvyShape()
+
+        this.id = createSha256CspHashFromPathD(this.pathD)
     }
 
     private generateCoords() {
