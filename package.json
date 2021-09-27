@@ -1,13 +1,14 @@
 {
   "name": "@lilalump/lavalampsvgblobs",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "a small library to generate random animated svg-blobs",
-  "main": "dist/blob.js",
   "author": "Jasper Bartscher",
   "license": "MIT",
   "type": "commonjs",
+  "main": "dist/blob.js",
+  "types": "dist/blob.d.ts",
   "files": [
-    "/dist"
+    "/dist/**/*"
   ],
   "dependencies": {
     "@svgdotjs/svg.js": "^3.1.1",
