@@ -22,7 +22,7 @@ type Coordinate = {
     y: number,
 }
 
-export class CurvyBlob implements Blob {
+export default class CurvyBlob implements Blob {
 
     centerX: number;
     centerY: number;
@@ -114,3 +114,10 @@ export class CurvyBlob implements Blob {
         return num
     }
 }
+
+export function foo(){
+    return "FOO!"
+}
+
+// module.exports = {CurvyBlob, foo, Blob}
+

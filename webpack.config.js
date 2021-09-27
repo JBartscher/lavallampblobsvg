@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-    entry: './src/index.ts',
+    entry: path.resolve(__dirname, 'src/blob.ts'),
     module: {
         rules: [
             {
@@ -15,7 +15,7 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js'],
     },
     output: {
-        filename: "blob.js",
+        filename: "blob.bundle.js",
         path: path.resolve(__dirname, 'dist')
     },
     devServer: {

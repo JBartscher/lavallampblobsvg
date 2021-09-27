@@ -18,8 +18,10 @@
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
     "@babel/preset-typescript": "^7.15.0",
+    "@lilalump/lavalampsvgblobs": "^0.0.3",
     "babel-jest": "^27.2.2",
     "jest": "^27.2.2",
+    "parcel-bundler": "^1.12.4",
     "ts-loader": "^9.2.6",
     "typescript": "^4.4.3",
     "webpack": "^5.54.0",
@@ -28,7 +30,8 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "build": "webpack",
-    "dev": "webpack serve"
+    "build": "tsc && parcel build test.html",
+    "dev": "parcel test.html --open",
+    "start": "yarn run build && yarn run dev"
   }
 }
