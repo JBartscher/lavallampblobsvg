@@ -1140,10 +1140,10 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@lilalump/lavalampsvgblobs@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@lilalump/lavalampsvgblobs/-/lavalampsvgblobs-0.0.4.tgz#9034aecb9b37a54f59325baf6360ea9552da26b9"
-  integrity sha512-JI6QA0esdN114PqtU3y/KSBh+HfgOctOYRz/7lSngiSs8rsI4/vppra7NjanTDFi6RXF5g1wkTx9CgBQJx/TZA==
+"@lilalump/lavalampsvgblobs@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@lilalump/lavalampsvgblobs/-/lavalampsvgblobs-0.0.5.tgz#0b100325966f7667fc72dd73f5898cc9dec7f437"
+  integrity sha512-C/yog/SQNfvF1TthxD0onL243GJyahUoYIdh+pwyclAALVMDIAEhS4ubr6zLr0n7x2fVQDHHyP3EoaHHrnALJA==
   dependencies:
     "@svgdotjs/svg.js" "^3.1.1"
     kute.js "^2.1.2"

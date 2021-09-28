@@ -2,19 +2,29 @@ import {Color} from "@svgdotjs/svg.js"
 import {createHash} from "crypto";
 
 export interface Blob {
+    id: string;
+    pathD: string;
+
     radius: number
     centerX: number
     centerY: number
     vertixCountFactor: number
-    angle: number
     visible: boolean
-    color: Color
 
-    pathD: string;
+    color: Color
 }
 
-function createSha256CspHashFromPathD(pathD) {
-    return createHash('sha256').update(pathD).digest('base64');
+/**
+ * uses the pathD-value of a blob to generate its id attribute.
+ * The id attribute of an svg path has to start with a character, therefore the string "id" is used as a suffix to
+ * ensure that this is always the case *
+ * @param blob
+ */
+function createIdHashFromBlobPathD(blob: Blob) {
+    if (blob.pathD == undefined || blob.pathD == "") {
+        throw new Error('cannot create hash of empty pathD attribute');
+    }
+    return "id" + createHash('sha1').update(blob.pathD).digest('hex').toString();
 }
 
 type Coordinate = {
@@ -23,38 +33,48 @@ type Coordinate = {
 }
 
 export class CurvyBlob implements Blob {
+    id: string;
+    pathD: string;
 
-    centerX: number;
-    centerY: number;
-    color: Color;
-    radius: number;
-    visible: boolean;
-    angle: number;
-    vertixCountFactor: number;
+    radius: number
+    centerX: number
+    centerY: number
+    vertixCountFactor: number
+    visible: boolean
+
+    color: Color
 
     private pathCoordinates: Coordinate[] = [];
-    pathD: string;
-    private id: string;
 
-    constructor() {
+    /**
+     * constructor of CurvyBlob
+     * @param vertixCountFactor
+     * @param centerX
+     * @param centerY
+     * @param radius
+     * @param color
+     */
+    constructor(vertixCountFactor = 0.5, centerX = 100, centerY = 100, radius = 100, color = Color.random("vibrant")) {
         this.pathD = "";
-        this.angle = 0
-        this.vertixCountFactor = 0.6;
-        this.radius = 100;
-        this.angle = 0;
-        this.centerX = 240;
-        this.centerY = 240;
-        this.color = Color.random("vibrant")
+        this.vertixCountFactor = vertixCountFactor;
+        this.radius = radius;
+        this.centerX = centerX;
+        this.centerY = centerY;
+        this.color = color
 
         this.generateCurvyShape()
 
-        this.id = createSha256CspHashFromPathD(this.pathD)
+        this.id = createIdHashFromBlobPathD(this)
+        console.log(this.id)
     }
 
+    /**
+     * generate coordinates which will later be used to build the path
+     */
     private generateCoords() {
         for (let i = 0; i < 2 * Math.PI; i += this.vertixCountFactor) {
-            let x = (this.radius * Math.cos(i) + this.centerX) + this.getRandomRadiusModifier();
-            let y = (this.radius * Math.sin(i) + this.centerY) + this.getRandomRadiusModifier();
+            let x = (this.radius * Math.cos(i) + this.centerX) + CurvyBlob.getRandomRadiusModifier();
+            let y = (this.radius * Math.sin(i) + this.centerY) + CurvyBlob.getRandomRadiusModifier();
             this.pathCoordinates.push({x, y});
             if (i + this.vertixCountFactor >= 2 * Math.PI) {
                 this.pathCoordinates.push(this.pathCoordinates[0])
@@ -99,26 +119,17 @@ export class CurvyBlob implements Blob {
         return d;
     };
 
-    private drawCurvyShape() {
-        this.pathD = this.catmullRom2bezier();
-        console.log(this.pathD)
-    };
-
     private generateCurvyShape() {
         this.generateCoords();
-        this.drawCurvyShape();
+        this.pathD = this.catmullRom2bezier();
     };
 
 
-    private getRandomRadiusModifier() {
-        let num = Math.floor(Math.random() * 10) + 1;
+    private static getRandomRadiusModifier(factor = 10) {
+        let num = Math.floor(Math.random() * factor) + 1;
         num *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
         return num
     }
-}
-
-export function foo(){
-    return "FOO!"
 }
 
 // module.exports = {CurvyBlob, foo, Blob}

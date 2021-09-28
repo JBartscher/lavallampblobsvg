@@ -1,8 +1,12 @@
-const {SVG} = require("@svgdotjs/svg.js");
-const CurvyBlob = require("@lilalump/lavalampsvgblobs");
+const {SVG, Color} = require("@svgdotjs/svg.js");
+const {An} = require("@lilalump/lavalampsvgblobs");
 const crypto = require('crypto');
 const kute = require("kute.js");
+const {AnimatedCurvyBlob} = require("./src/svg");
 
+
+
+/*
 c1 = new CurvyBlob.CurvyBlob()
 c2 = new CurvyBlob.CurvyBlob()
 
@@ -64,6 +68,14 @@ tween.start();
 //rect.stroke({ color: '#f06', opacity: 0.6, width: 5 })
 //path.stroke('#f06')
 
+
+blobs =  new AnimatedCurvyBlob("body");
+
 setTimeout(function () {
-    window.location.reload(1);
-}, 2000);
+    // window.location.reload(1);
+    var blob = new AnimatedCurvyBlob("body");
+    blobs.push(blob)
+}, 1000);
+*/
+as = new AnimatedCurvyBlob(".center-container",0.75,125,125, 50,new Color(32,32,32))
+
