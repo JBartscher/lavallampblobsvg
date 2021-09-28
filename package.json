@@ -1,6 +1,6 @@
 {
   "name": "@lilalump/lavalampsvgblobs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "a small library to generate random animated svg-blobs",
   "author": "Jasper Bartscher",
   "license": "MIT",
